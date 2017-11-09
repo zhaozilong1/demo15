@@ -1,0 +1,43 @@
+.navbar-wrapper {
+  width: 100%;
+  position: relative;
+  z-index: 15;
+
+}
+.container{
+  width: 100%;
+  background: rgba(0,0,0,.5);
+}
+
+.navbar.navbar-inverse.navbar-static-top {
+  /*background: #5cb85c;*/
+  /*border-color: #398439;*/
+}
+.navbar.navbar-inverse.navbar-static-top a{
+  color:#fff;
+}
+.navbar.navbar-inverse.navbar-static-top a:hover{
+  color:#0A64A4;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus{
+  /*background:#398439;*/
+  font-weight:700;
+}
+.navbar-inverse .navbar-nav>.active>a:hover {
+  /*background:#398439;*/
+  color:#fff;
+  font-weight:700;
+}
+.carousel-caption {
+  z-index: 0;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 0;
+  /*background-color: #0A64A4;*/
+}
+
+.collapse{
+  float: right;
+}
