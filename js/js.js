@@ -1,7 +1,6 @@
 
 $(window).scroll(function () {
     var a = $(window).scrollTop();
-    console.log(a)
     if(a > 50 && a < 100){
         $("nav").css({background:" transparent"})
         $("nav").hide()
@@ -16,7 +15,7 @@ $(window).scroll(function () {
 
 
 
-
+//获取轮播文字
 $.ajax({
     url:"http://localhost:3000/item/hqlunboconcat",
     type:"POST",
@@ -25,7 +24,20 @@ $.ajax({
             $(".carousel-caption").eq(i).append("<h2>"+w[i].title+"</h2>"+w[i].futitle+"<span></span>")
         }
     }
-})
+});
+//获取轮播图片
+$.ajax({
+    url:"http://localhost:3000/item/hqlunbosrc",
+    type:"POST",
+    success:function (w) {
+        for(var i in w){
+            $(".item").eq(i).append("<img src='http://localhost:3000/"+w[i].imgsrc+"'>")
+        }
+    }
+});
+
+
+//产品介绍
 $.ajax({
     url:"http://localhost:3000/item/hqmobanconcat",
     type:"POST",
@@ -37,7 +49,7 @@ $.ajax({
         $(".template-message ul").append(str)
     }
 })
-
+//轮播
     var n=0;
     var w = 1170
 //            下一个
@@ -63,13 +75,106 @@ $.ajax({
 
     });
     var height1 = document.documentElement.clientHeight
-// console.log(height1)
-    // .plate,.plate2,.plate4,.plate5,.plate6,.plate7,.plate8,.plate9
+
     $(".lunbo").css("height",height1 + "px");
 
-$(".right span").click(function () {
-    $(this).css("background","#ff5100").siblings().css("background","rgba(0,0,0,.8)")
+//轮播获取
+$.ajax({
+    url:"http://localhost:3000/tdlb/tunaduihqlunbosrc",
+    type:'POST',
+    success:function (e) {
+        $.ajax({
+            url:"http://localhost:3000/tdlb/tuanduihqlunboconcat",
+            type:"POST",
+            success:function (w) {
+                var str=""
+                for(var i in e){
+                    str+="<div class='td_tu'><img src='http://localhost:3000/"+e[i].imgsrc+"'><h4>"+w[i].name+"</h4><h5>"+w[i].jieshao+"</h5><p>"+w[i].xiangqing+"</p></div>"
+                }
+                $(".ull li").eq(0).append(str)
+                $(".ull li").eq(1).append(str)
+            }
+        })
+
+    }
 })
+$.ajax({
+    url:"http://localhost:3000/item/hqxiaoshouconcat",
+    type:"POST",
+    success:function (e) {
+        var str=""
+        for(var i in e){
+            str+="<li><div class=\"market-top\">"+e[i].val+"</div><div class=\"market-btm\">"+e[i].txt+"<span class='"+e[i].fontclass+"'></span></div></li>"
+        }
+        $(".mark").append(str)
+    }
+});
+
+//项目展示
+$.ajax({
+    url: "http://localhost:3000/zhan/zhanshicount",
+    type: "POST",
+    data: {
+        uid: 1
+    },
+    success: function (e) {
+        for (var i in e) {
+            $(".elect-btm").append("<li><img src='http://localhost:3000/" + e[i].imgsrc + "'><b></b></li>")
+
+        }
+    }
+})
+$(".elect-top a").click(function () {
+    var uid=$(this).attr("th-id")
+    $.ajax({
+        url: "http://localhost:3000/zhan/zhanshicount",
+        type: "POST",
+        data: {
+            uid:uid
+        },
+        success: function (e) {
+            var str=""
+            for (var i in e) {
+                str+="<li><img src='http://localhost:3000/" + e[i].imgsrc + "'><b></b></li>"
+            }
+            $(".elect-btm").html(str)
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -93,7 +93,7 @@ nav ul li a{
     -webkit-animation: abc 8.5s linear infinite;
 }
 .carousel-caption{
-    bottom:350px;
+    bottom:150px;
     color: white;
     z-index: 10;
 }
